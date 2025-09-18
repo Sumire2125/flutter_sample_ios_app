@@ -1,6 +1,6 @@
-# hello_flutter
+# iosアプリを作ってみたくて挑戦してみた。
 
-A new Flutter project.
+でも手元にMacがないので、スマホで動かせない。悲しい。
 
 ## Getting Started
 
