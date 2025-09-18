@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/todo.dart';
+import '../styles.dart';
 
 // スワイプ削除＋チェック付きのToDoアイテム
 class DismissibleTodoItem extends StatelessWidget {
@@ -35,20 +36,15 @@ class DismissibleTodoItem extends StatelessWidget {
         leading: IconButton(
           icon: Icon(
             todo.isDone ? Icons.pets : Icons.radio_button_unchecked,
-            color: todo.isDone ? Colors.grey : Colors.brown,
+            color: todo.isDone ? Colors.grey : AppColors.accent,
           ),
           onPressed: () {
-            // 押されたら完了フラグを切り替え
             onChanged(!todo.isDone);
           },
         ),
         title: Text(
           todo.title,
-          style: TextStyle(
-            decoration: todo.isDone
-                ? TextDecoration.lineThrough
-                : TextDecoration.none,
-          ),
+          style: todo.isDone ? AppTextStyles.done : AppTextStyles.todo,
         ),
       ),
     );

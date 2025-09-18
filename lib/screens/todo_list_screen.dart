@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../widgets/todo_input_field.dart';
 import '../widgets/dismissible_todo_item.dart';
 import '../models/todo.dart';
+import '../styles.dart';
 
 class TodoListScreen extends StatefulWidget {
   const TodoListScreen({super.key});
@@ -17,10 +18,10 @@ class _TodoListScreenState extends State<TodoListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.brown[50], // 柔らかい背景色
+      backgroundColor: AppColors.background,
       appBar: AppBar(
         title: const Text('🐾 ToDoリスト'),
-        backgroundColor: Colors.brown[200],
+        backgroundColor: AppColors.accentLight,
       ),
       body: Column(
         children: [
