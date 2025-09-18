@@ -42,17 +42,33 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-// ToDoリスト画面（まだ仮）
+// ToDoリスト画面（ステップ2）
 class TodoListScreen extends StatelessWidget {
   const TodoListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // ダミーデータ（あとで入力フォームで増やせるようにする）
+    final todos = [
+      '牛乳を買う',
+      'Flutterを勉強する',
+      'GitHubにpushする',
+      '掃除する',
+      'ランニングする',
+    ];
+
     return Scaffold(
       appBar: AppBar(title: const Text('ToDoリスト')),
-      body: const Center(
-        child: Text('ここにToDoリストが表示されます'),
+      body: ListView.builder(
+        itemCount: todos.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            leading: const Icon(Icons.check_box_outline_blank),
+            title: Text(todos[index]),
+          );
+        },
       ),
     );
   }
 }
+
