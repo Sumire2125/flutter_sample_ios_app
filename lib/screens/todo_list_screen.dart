@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/todo_input_field.dart';
-import '../widgets/todo_item.dart'; // ← 新しい部品を読み込み
+import '../widgets/dismissible_todo_item.dart';
+import '../models/todo.dart';
 
 class TodoListScreen extends StatefulWidget {
   const TodoListScreen({super.key});
@@ -10,7 +11,7 @@ class TodoListScreen extends StatefulWidget {
 }
 
 class _TodoListScreenState extends State<TodoListScreen> {
-  final List<String> _todos = [];
+  final List<Todo> _todos = [];
   final TextEditingController _controller = TextEditingController();
 
   @override
@@ -24,7 +25,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
             onAdd: () {
               if (_controller.text.isNotEmpty) {
                 setState(() {
-                  _todos.add(_controller.text);
+                  _todos.add(Todo(title: _controller.text));
                   _controller.clear();
                 });
               }
@@ -34,8 +35,20 @@ class _TodoListScreenState extends State<TodoListScreen> {
             child: ListView.builder(
               itemCount: _todos.length,
               itemBuilder: (context, index) {
-                // ここでListTileを直接書く代わりにTodoItemを呼び出す
-                return TodoItem(title: _todos[index]);
+                final todo = _todos[index];
+                return DismissibleTodoItem(
+                  todo: todo,
+                  onDismissed: () {
+                    setState(() {
+                      _todos.removeAt(index);
+                    });
+                  },
+                  onChanged: (value) {
+                    setState(() {
+                      todo.isDone = value ?? false;
+                    });
+                  },
+                );
               },
             ),
           ),
