@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/todo_input_field.dart';
+import '../widgets/todo_item.dart'; // ← 新しい部品を読み込み
 
 class TodoListScreen extends StatefulWidget {
   const TodoListScreen({super.key});
@@ -18,7 +19,6 @@ class _TodoListScreenState extends State<TodoListScreen> {
       appBar: AppBar(title: const Text('ToDoリスト')),
       body: Column(
         children: [
-          // 入力欄をWidgetとして切り出す
           TodoInputField(
             controller: _controller,
             onAdd: () {
@@ -34,10 +34,8 @@ class _TodoListScreenState extends State<TodoListScreen> {
             child: ListView.builder(
               itemCount: _todos.length,
               itemBuilder: (context, index) {
-                return ListTile(
-                  leading: const Icon(Icons.check_box_outline_blank),
-                  title: Text(_todos[index]),
-                );
+                // ここでListTileを直接書く代わりにTodoItemを呼び出す
+                return TodoItem(title: _todos[index]);
               },
             ),
           ),
