@@ -27,20 +27,27 @@ class DismissibleTodoItem extends StatelessWidget {
       ),
       onDismissed: (direction) {
         onDismissed();
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('${todo.title} を削除しました')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('${todo.title} を削除しました')));
       },
       child: ListTile(
-        leading: Checkbox(
-          value: todo.isDone,
-          onChanged: onChanged, // 呼び出し元で状態を更新
+        leading: IconButton(
+          icon: Icon(
+            todo.isDone ? Icons.pets : Icons.radio_button_unchecked,
+            color: todo.isDone ? Colors.grey : Colors.brown,
+          ),
+          onPressed: () {
+            // 押されたら完了フラグを切り替え
+            onChanged(!todo.isDone);
+          },
         ),
         title: Text(
           todo.title,
           style: TextStyle(
-            decoration:
-                todo.isDone ? TextDecoration.lineThrough : TextDecoration.none,
+            decoration: todo.isDone
+                ? TextDecoration.lineThrough
+                : TextDecoration.none,
           ),
         ),
       ),

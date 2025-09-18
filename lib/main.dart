@@ -12,8 +12,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'ToDo App',
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.brown, // 犬っぽいカラー
+        ),
+        useMaterial3: true, // 新しいデザイン適用
+      ),
       home: const HomeScreen(),
     );
   }
 }
+

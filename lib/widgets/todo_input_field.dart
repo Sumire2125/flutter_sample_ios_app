@@ -20,12 +20,14 @@ class TodoInputField extends StatelessWidget {
             child: TextField(
               controller: controller,
               decoration: const InputDecoration(
-                hintText: '新しいToDoを入力',
+                hintText: '新しいToDoを入力 🐶',
+                border: OutlineInputBorder(),
               ),
             ),
           ),
           IconButton(
-            icon: const Icon(Icons.add),
+            icon: const Icon(Icons.pets), // 犬アイコンで追加！
+            color: Colors.brown,
             onPressed: onAdd,
           ),
         ],

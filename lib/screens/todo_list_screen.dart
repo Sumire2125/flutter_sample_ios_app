@@ -17,7 +17,11 @@ class _TodoListScreenState extends State<TodoListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('ToDoリスト')),
+      backgroundColor: Colors.brown[50], // 柔らかい背景色
+      appBar: AppBar(
+        title: const Text('🐾 ToDoリスト'),
+        backgroundColor: Colors.brown[200],
+      ),
       body: Column(
         children: [
           TodoInputField(
